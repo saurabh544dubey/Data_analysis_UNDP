@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 from helper import overall_population , preprocess
-from functions import num_countries,list_of_countries,pie_trade,fertility_rate,IMR,pop_reg,region_trade,region_trade_perc,reg_fer_rate,country_wise_analysis,age_class
+from functions import overall_data,num_countries,list_of_countries,pie_trade,fertility_rate,IMR,pop_reg,region_trade,region_trade_perc,reg_fer_rate,country_wise_analysis,age_class
 
 
 df = pd.read_csv('dataset/country_variables.csv')
@@ -31,12 +31,10 @@ if user_menu == 'Overall Analysis':
         overall,population,surface_area,gdp,economy,demographics = st.tabs(["Overall","Population","Surface_area","GDP","Economy","Demographics"])
         
         # Overall tab
-        col1 , col2 , col3 = overall.columns(3)
-        col1.header("Population")
-        col1.write(456)
+        over_df = overall_data(df)
         
-        col2.header("Population")
-        col2.write(456)
+        overall.table(over_df)
+        
         
         # Population tab
         population.header("Top 5 Populated countries")

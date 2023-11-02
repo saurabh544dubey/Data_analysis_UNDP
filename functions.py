@@ -2,6 +2,17 @@ import plotly.express as px
 import pandas as pd
 
 
+def overall_data(df):
+    numb_countries = df['country'].nunique()
+    num_regions = df['Region'].nunique()
+    tot_pop = df['Population (2017)'].sum()
+    tot_surf = int(df['Surface area (km2)'].sum())
+    
+    over_df = pd.DataFrame([numb_countries , num_regions , tot_pop , tot_surf] , index=['Number of Countries' , 'Number of Regions','Total Population' , 'Total Surface area(km2)'] , columns=['Overall Data'])
+    
+    return over_df
+
+
 def num_countries(df):
     val_cou = df['Region_combined'].value_counts()
     val_cou = val_cou.reset_index().rename({'index' : "Region" , 'Region_combined':'Number of countries'} , axis=1)
